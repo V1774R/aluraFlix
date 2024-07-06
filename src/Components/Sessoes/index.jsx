@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const SectionEstilizada = styled.section`
-    width: 1356px;
+    width: 100%;
     height: 435px;
     background-color: none;
     display: flex;

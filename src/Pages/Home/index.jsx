@@ -2,6 +2,8 @@ import styled from "styled-components"
 import { Banner } from "../../Components/Banner"
 import { Sessao } from "../../Components/Sessoes"
 import { Card } from "../../Components/Cards"
+import { useContext } from "react"
+import {VideosContexto} from "../../Contextos/Videos/VideosContext"
 
 const SectionMain = styled.div`
     margin-top: -34px;
@@ -15,54 +17,65 @@ const SectionMain = styled.div`
         flex-direction: row;
         justify-content: center;
         align-items: center;
-    }
-    .btnCategoria{
-        width: 432px;
-        height: 70px;
-        background-color: #6BD1FF;
-        border-radius: 10px;
-        border: none;
-        font-weight: bolder;
-        font-size: 32px;
-        margin-left: 28px;
-    }
-    
+    }   
 `
 
 export const Home = () => {
+    const {videos, categorias} = useContext(VideosContexto)
+    console.log(videos)
     return(
         <main>
             <Banner>
-                <img src="/imgs/player.png" alt="imagem de fundo do banner com videos em destaque" />
+                <div className="conteiner">
+                    <div className="conteudo1">
+                        <button className="btnCategoria">FRONT-END</button>
+                        <h1>SEO com React</h1>
+                        <p>
+                            What is Lorem Ipsum?
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+                            when an unknown printer took a galley of type and scrambled it to make a type 
+                            specimen book. It has survived not only five centuries, but also the leap into 
+                            electronic typesetting, remaining essentially unchanged. It was popularised in 
+                            the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, 
+                            and more recently with desktop publishing software like Aldus PageMaker 
+                            including versions of Lorem Ipsum.
+                        </p>
+                    </div>
+                    <div className="conteudo2">
+                        <img src="imgs/player.png"  />
+                    </div>
+                </div>
             </Banner>
             <SectionMain>
-                <Sessao>
-                    <button className="btnCategoria">FRONT</button>
-                    <div className="areaCard">
-                        <Card />
-                        <Card />
-                        <Card />
-                    </div>
-                </Sessao>
 
-                <Sessao>
-                    <button className="btnCategoria">BACK-END</button>
-                    <div className="areaCard">
-                        <Card />
-                        <Card />
-                        <Card />
-                    </div>
-                </Sessao>
+                {
+                    categorias.map(categoria => (
+                        <Sessao key={categoria}>
+                            <button className="btnCategoria">{categoria}</button>
+                            <div className="areaCard">
+                                {
+                                    videos.map(video => {
+                                        if(categoria === video.categoria){
+                                            return(
+                                                <Card 
+                                                    key={video.id}
+                                                    pid={video.id} 
+                                                    ptitulo={video.titulo} 
+                                                    pimagem={video.imagem}
+                                                    pvideo={video.video}
+                                                    pcategoria={categoria}
+                                                    pdescricao={video.descricao}
 
-                <Sessao>
-                    <button className="btnCategoria">INOVAÇÃO E GESTÃO</button>
-                    <div className="areaCard">
-                        <Card />
-                        <Card />
-                        <Card />
-                    </div>
-                </Sessao>
-
+                                                />
+                                            )
+                                        }
+                                    })
+                                }
+                            </div>
+                        </Sessao>                        
+                    ))
+                }
             </SectionMain>
         </main>
     )

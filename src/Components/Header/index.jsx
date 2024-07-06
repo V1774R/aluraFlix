@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import { Botao } from "../Botao";
+import { Link } from "react-router-dom";
 
 const HeaderEstilizado = styled.header`
-    width: 1443px;
+    width: 100%;
     height: 125px;
     display: flex;
     justify-content: space-between;
@@ -32,8 +33,12 @@ export const Header = () => {
         <HeaderEstilizado>
             <img src="/imgs/logo.png" alt="Logo da Alura Flix" />
             <div className="botoes">
-                <Botao ativo>HOME</Botao>
-                <Botao>NOVO VÍDEO</Botao>
+                <Link to="/"> 
+                    <Botao rota="/">HOME</Botao> 
+                </Link>
+                <Link to="/novoVideo">
+                    <Botao rota="/novoVideo">NOVO VÍDEO</Botao>
+                </Link>
             </div>
         </HeaderEstilizado>
     )

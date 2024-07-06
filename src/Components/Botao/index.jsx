@@ -1,17 +1,21 @@
 import styled from "styled-components"
+import {useLocation} from "react-router-dom";
 
 const ButtonEstilizado = styled.button`
     background-color: #000000;
-    border: ${props => props.ativo ? "2px solid var(--azul)" : "2px solid #ffffff"};
+    border: 2px solid #ffffff;
     border-radius: 10px;
     color: #ffffff;
     font-weight: bolder;
     cursor: pointer;
 `
 
-export const Botao = ({ativo, children}) => {
+export const Botao = ({rota, children}) => {
+    const location = useLocation();
+    const rotaAtual = location.pathname;
+    const ativar = rotaAtual === rota ? 'btn-ativo' : '';
     return(
-        <ButtonEstilizado $ativo={ativo}>
+        <ButtonEstilizado className={ativar}>
            {children}
         </ButtonEstilizado>
     )

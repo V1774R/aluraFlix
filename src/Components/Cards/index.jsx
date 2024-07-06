@@ -1,7 +1,8 @@
 import styled from "styled-components"
-import { Botao } from "../Botao"
-import { Banner } from "../Banner"
+import axios from "axios"
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
+
 
 const CardEstilizado = styled.div`
     width: 433px;
@@ -14,6 +15,7 @@ const CardEstilizado = styled.div`
     img{
         width: 100%;
         height: 260px;
+        border-radius: 10px;
     }
     .controle{
         width: 100%;
@@ -49,20 +51,21 @@ const Modal = styled.div`
     justify-content: center;
     form{
         width: 700px;
-        height: auto;
-        padding-block: 30px;
+        height: 95vh;
+        padding-block: 20px;
         border-radius: 10px;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         border: 2px solid var(--azul);
-        gap: 50px;
+        gap: 20px;
         position: relative;
     }
     form .campo{
         width: 573px;
-        height: 62px;
+        min-height: 30px;
+        height: 10vh;
         border-radius: 8px;
         border: none;
         padding: 5px;
@@ -94,8 +97,57 @@ const Modal = styled.div`
     }
 `
 
-export const Card = () => {
-    const [classeModal, setClasseModal] = useState("hide")
+export const Card = ({pid, ptitulo, pimagem, pvideo, pcategoria, pdescricao}) => {
+    const [id, setId] = useState(pid);
+    const [classeModal, setClasseModal] = useState("hide");
+    const [titulo, setTitulo] = useState(ptitulo);
+    const [imagem, setImagem] = useState(pimagem);
+    const [video, setVideo] = useState(pvideo);
+    const [categoria, setCategoria] = useState(pcategoria);
+    const [descricao, setDescricao] = useState(pdescricao);
+    const navigate = useNavigate();
+
+    const validacao = (e) => {
+        e.preventDefault();
+        if(!titulo || !categoria || !imagem || !video || !descricao){
+            alert('Erro! Preencha todos os campos para continuar.')
+        }else{
+            const novoVideo = {
+                titulo,
+                categoria,
+                imagem,
+                video,
+                descricao
+            }
+            const atualizar = async (id) => {
+                try{
+                    const resposta = await axios.put(`http://localhost:5000/videos/${id}`, novoVideo);
+                    if(resposta){
+                        alert('atualizado com sucesso!')
+                        setClasseModal('hide');
+                        navigate('/');
+                    }
+                }catch(error){
+                    alert(error.message)
+                    console.log(error);
+                }
+            }
+            atualizar(id);
+        }
+    }    
+    const deletar = async(id) =>{
+        try{
+            const resposta = await axios.delete(`http://localhost:5000/videos/${id}`);
+            if(resposta){
+                alert('Deletado com sucesso!')
+                navigate('/');
+            }
+        }catch(error){
+            alert(error.message)
+            console.log(error)
+        }
+    }
+    
     const abrirModal = () => {
         console.log()
         if(classeModal === "hide"){
@@ -110,17 +162,14 @@ export const Card = () => {
     return(
         <>
             <Modal className={classeModal} >
-                
-                <form>
+                <form onSubmit={(e)=>{validacao(e)}}>
                     <img className="iconeX" src="/imgs/x.png" alt="icone de x" onClick={()=>{abrirModal()}}/>
                     <h1>EDITAR CARD:</h1>
-                    <input className="campo" type="text" placeholder="Título" />
-                    <select className="campo" id="categoria">
-                        <option >Selecione</option>
-                    </select>
-                    <input className="campo" type="text" placeholder="Url da Imagem" />
-                    <input className="campo" type="text" placeholder="Url do Vídeo" />
-                    <textarea className="campo" placeholder="Descrição"></textarea>
+                    <input className="campo" type="text" placeholder="Título" value={titulo} onChange={(e)=>setTitulo(e.target.value)}/>
+                    <input type="text"className="campo" readOnly value={categoria} />
+                    <input className="campo" type="text" placeholder="Url da Imagem" value={imagem} onChange={(e)=>setImagem(e.target.value)}/>
+                    <input className="campo" type="text" placeholder="Url do Vídeo" value={video} onChange={(e)=>setVideo(e.target.value)}/>
+                    <textarea className="campo" placeholder="Descrição"value={descricao} onChange={(e)=>setDescricao(e.target.value)}></textarea>
                     <div>
                         <input type="submit" className="botao" value="GUARDAR" />
                         <input type="reset" className="botao" value="LIMPAR" />
@@ -128,9 +177,9 @@ export const Card = () => {
                 </form>
             </Modal>        
             <CardEstilizado >
-                <img src="/imgs/imagemTemp.png" alt="Descricao da img" />
+                <img src={imagem} alt={`imagem do filme ${titulo}`} />
                 <div className="controle">
-                    <button className="btn">DELETAR</button>
+                    <button className="btn" onClick={()=>{deletar(pid)}}>DELETAR</button>
                     <button  className="btn" onClick={()=>{abrirModal()}}>EDITAR</button>
                 </div>
             </CardEstilizado>
