@@ -1,15 +1,16 @@
 import styled from "styled-components"
 
 const BannerEstilizado = styled.div`
-    width: 100%;
-    height: 832px;
+    display: none;
+    position: relative;
+    top: 0px;
+    max-width: 1200px;
+    height: 380px;
     background-color: #001233;
     background-image: url("/imgs/player.png");
     background-repeat: no-repeat;
     background-size: 100% auto;
     background-position: center center;
-
-    
     .conteiner{
         display: flex;
         flex-direction: row;
@@ -18,6 +19,7 @@ const BannerEstilizado = styled.div`
         margin: auto;
         margin-top: 360px;
         color: #ffffff;
+        display: none;
     }
     .conteudo1, .conteudo2{
         width: 50%;
@@ -37,7 +39,18 @@ const BannerEstilizado = styled.div`
         width: 100%;
         overflow: hidden;
     }
+    @media(min-width: 720px){
+        display: block;
+    }
+    @media(min-width: 1100px){
+        top: 125px;
+        align-items: center;
+        .conteiner{
+            margin-top: 20px;
+            display: flex;
+        }
 
+    }
 `
 
 export const Banner = ({children}) => {

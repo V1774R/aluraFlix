@@ -3,29 +3,28 @@ import { Botao } from "../Botao";
 import { Link } from "react-router-dom";
 
 const HeaderEstilizado = styled.header`
-    width: 100%;
-    height: 125px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #262626;
-    padding: 0px 52px;
-    position: absolute;
-    top: 0px;
-    z-index: 2;
     img{
         width: 167px;
         height: 40px;
     }
     .botoes{
-        width: 385px;
-        height: 54px;
+            width: 385px;
+    }    
+    display: none;
+    @media(min-width: 1100px){
+        display: flex;
+        width: 1200px;
+        height: 125px;
         display: flex;
         justify-content: space-between;
-    }
-    button{
-        width: 180px;
-        height: 54px;
+        align-items: center;
+        background-color: #262626;
+        padding: 0px 52px;
+        position: relative;
+        top: 0px;
+        z-index: 2;
+        box-sizing: border-box;
+        margin: auto;
     }
 `
 export const Header = () => {

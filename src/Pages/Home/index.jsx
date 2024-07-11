@@ -6,18 +6,25 @@ import { useContext } from "react"
 import {VideosContexto} from "../../Contextos/Videos/VideosContext"
 
 const SectionMain = styled.div`
-    margin-top: -34px;
+    padding-top: 10px;
     display: flex;
     flex-direction: column;
     gap: 100px;
     padding-bottom: 150px;
-    .areaCard{
+    .areaBtnCategoria{
         width: 100%;
         display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-    }   
+    }
+    .areaCard{
+        display: flex;
+        overflow: auto;
+    }
+@media(min-width: 1100px){
+    margin-top: -34px;
+    .areaCard{
+        margin-top: 80px;
+    }
+}
 `
 
 export const Home = () => {
@@ -48,11 +55,12 @@ export const Home = () => {
                 </div>
             </Banner>
             <SectionMain>
-
                 {
                     categorias.map(categoria => (
                         <Sessao key={categoria}>
-                            <button className="btnCategoria">{categoria}</button>
+                            <div className="areaBtnCategoria">
+                                <button className="btnCategoria">{categoria}</button>
+                            </div>
                             <div className="areaCard">
                                 {
                                     videos.map(video => {
@@ -73,6 +81,7 @@ export const Home = () => {
                                     })
                                 }
                             </div>
+                            
                         </Sessao>                        
                     ))
                 }

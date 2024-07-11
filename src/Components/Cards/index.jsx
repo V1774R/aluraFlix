@@ -5,17 +5,17 @@ import { useNavigate } from "react-router-dom"
 
 
 const CardEstilizado = styled.div`
-    width: 433px;
-    margin: 10px;
+    min-width: 350px;
     height: auto;
     display: flex;
     flex-direction: column;
     border: 2px solid var(--azul);
     border-radius: 10px;
+    margin: 20px 30px 20px auto;
     img{
-        width: 100%;
+        width: 350px;
         height: 260px;
-        border-radius: 10px;
+        border-radius: 10px 10px 0px 0px;
     }
     .controle{
         width: 100%;
@@ -50,9 +50,9 @@ const Modal = styled.div`
     align-items: center;
     justify-content: center;
     form{
-        width: 700px;
+        width: 90%;
         height: 95vh;
-        padding-block: 20px;
+        padding: 10px;
         border-radius: 10px;
         display: flex;
         flex-direction: column;
@@ -63,7 +63,7 @@ const Modal = styled.div`
         position: relative;
     }
     form .campo{
-        width: 573px;
+        width: 100%;
         min-height: 30px;
         height: 10vh;
         border-radius: 8px;
@@ -85,7 +85,7 @@ const Modal = styled.div`
         cursor: pointer;
     }
     div{
-        width: 573px;
+        width: 100%;
         display: flex;
         justify-content: space-between;
     }
@@ -106,6 +106,16 @@ export const Card = ({pid, ptitulo, pimagem, pvideo, pcategoria, pdescricao}) =>
     const [categoria, setCategoria] = useState(pcategoria);
     const [descricao, setDescricao] = useState(pdescricao);
     const navigate = useNavigate();
+    
+    
+    const limpar = () => {
+        setTitulo('')
+        setCategoria('')
+        setImagem('')
+        setVideo('')
+        setDescricao('')
+    }
+
 
     const validacao = (e) => {
         e.preventDefault();
@@ -172,7 +182,7 @@ export const Card = ({pid, ptitulo, pimagem, pvideo, pcategoria, pdescricao}) =>
                     <textarea className="campo" placeholder="Descrição"value={descricao} onChange={(e)=>setDescricao(e.target.value)}></textarea>
                     <div>
                         <input type="submit" className="botao" value="GUARDAR" />
-                        <input type="reset" className="botao" value="LIMPAR" />
+                        <input type="reset" className="botao" value="LIMPAR" onClick={()=>{limpar()}}/>
                     </div>
                 </form>
             </Modal>        

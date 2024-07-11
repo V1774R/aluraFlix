@@ -1,19 +1,21 @@
 import { createGlobalStyle } from "styled-components";
 
 export const EstilosGlobais = createGlobalStyle`
-
     *{
         max-width: 100%;
         margin: 0px;
         box-sizing: border-box;
         font-family: "Source Sans 3", sans-serif;
-        font-optical-sizing: auto;
         font-style: normal;
     }
     :root{
         --azul: #2271D1;
         --azul-escuro: #03122F;
     }
+    body{
+        background-color: #000000;
+    }
+
     main{
         width: 100%;
         min-height: 100vh;
@@ -52,13 +54,50 @@ export const EstilosGlobais = createGlobalStyle`
         border: 2px solid var(--azul);
     }
     .btnCategoria{
-        width: 432px;
+        width: 350px;
         height: 70px;
         background-color: #6BD1FF;
         border-radius: 10px;
         border: none;
         font-weight: bolder;
         font-size: 32px;
-        margin-left: 28px;
+    }
+    .botoes{
+        width: 100%;
+        height: 54px;
+        display: flex;
+        justify-content: space-between;
+    }
+    button{
+        width: 180px;
+        height: 54px;
+    }
+
+
+    /* Estilo para navegadores WebKit (Chrome, Safari, Opera) */
+    ::-webkit-scrollbar {
+    width: 12px; /* largura da barra de rolagem */
+    }
+
+    ::-webkit-scrollbar-track {
+    background-color: var(--azul); /* cor do fundo da trilha */
+    }
+
+    ::-webkit-scrollbar-thumb {
+    background-color: #66c0fc; /* cor do botão da barra de rolagem */
+    border-radius: 6px; /* borda arredondada */
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+    background-color: #33335c;
+    }
+    @media(min-width: 1100px){
+        main{
+            width: 1200px;
+            margin: auto;
+        }
+        .botoes{
+            width: 435px;
+        }
     }
 `
