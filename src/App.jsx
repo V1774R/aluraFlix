@@ -6,8 +6,8 @@ import { VideosProvider } from "./Contextos/Videos/VideosContext"
 import { NaoEcontrada } from "./Pages/NaoEcontrada"
 import { Sucesso } from "./Pages/Sucesso"
 
-function App() {
 
+function App() {
   return (
     <>
       <VideosProvider>

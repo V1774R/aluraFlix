@@ -2,7 +2,7 @@ import styled from "styled-components"
 import { Banner } from "../../Components/Banner"
 import { Sessao } from "../../Components/Sessoes"
 import { Card } from "../../Components/Cards"
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import {VideosContexto} from "../../Contextos/Videos/VideosContext"
 
 const SectionMain = styled.div`
@@ -16,11 +16,15 @@ const SectionMain = styled.div`
         display: flex;
     }
     .areaCard{
+        height: 370px;
         display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        background-color: none;
         overflow: auto;
-    }
+    
+}
 @media(min-width: 1100px){
-    margin-top: 50px;
     .areaCard{
         margin-top: 80px;
     }
@@ -28,8 +32,9 @@ const SectionMain = styled.div`
 `
 
 export const Home = () => {
-    const {videos, categorias} = useContext(VideosContexto)
-    console.log(videos)
+    const {videos, categorias, listarVideos} = useContext(VideosContexto)
+    // console.log(videos)
+    useEffect(()=>{listarVideos()}, [])
     return(
         <main>
             <Banner>

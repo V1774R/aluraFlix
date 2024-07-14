@@ -103,7 +103,7 @@ export const Card = ({pid, ptitulo, pimagem, pvideo, pcategoria, pdescricao}) =>
     const [titulo, setTitulo] = useState(ptitulo);
     const [imagem, setImagem] = useState(pimagem);
     const [video, setVideo] = useState(pvideo);
-    const [categoria, setCategoria] = useState(pcategoria);
+    const [categoria, setCategoria] = useState(pcategoria.nome);
     const [descricao, setDescricao] = useState(pdescricao);
     const navigate = useNavigate();
     
@@ -131,9 +131,8 @@ export const Card = ({pid, ptitulo, pimagem, pvideo, pcategoria, pdescricao}) =>
             }
             const atualizar = async (id) => {
                 try{
-                    const resposta = await axios.put(`http://localhost:5000/videos/${id}`, novoVideo);
+                    const resposta = await axios.put(`https://api-6fzr.onrender.com/videos/${id}`, novoVideo);
                     if(resposta){
-                        alert('atualizado com sucesso!')
                         setClasseModal('hide');
                         navigate('/');
                     }
@@ -147,10 +146,9 @@ export const Card = ({pid, ptitulo, pimagem, pvideo, pcategoria, pdescricao}) =>
     }    
     const deletar = async(id) =>{
         try{
-            const resposta = await axios.delete(`http://localhost:5000/videos/${id}`);
+            const resposta = await axios.delete(`https://api-6fzr.onrender.com/videos/${id}`);
             if(resposta){
-                alert('Deletado com sucesso!')
-                navigate('/');
+                navigate('/sucesso');
             }
         }catch(error){
             alert(error.message)

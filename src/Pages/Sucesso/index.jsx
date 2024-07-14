@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom"
 import styled from "styled-components"
 
 const H1Estilizado = styled.h1`
@@ -8,9 +10,13 @@ const H1Estilizado = styled.h1`
 `
 
 export const Sucesso = () => {
+    const navigate = useNavigate();
+    useEffect(()=>{
+        setTimeout(()=>{navigate('/')}, 1300)
+    }, [])
     return(
         <main>
-            <H1Estilizado>Vídeo cadastrado com sucesso!</H1Estilizado>
+            <H1Estilizado>Operação realizada com sucesso! </H1Estilizado>
         </main>
     )
 }
