@@ -20,7 +20,7 @@ const SectionMain = styled.div`
         overflow: auto;
     }
 @media(min-width: 1100px){
-    margin-top: -34px;
+    margin-top: 50px;
     .areaCard{
         margin-top: 80px;
     }
@@ -57,14 +57,14 @@ export const Home = () => {
             <SectionMain>
                 {
                     categorias.map(categoria => (
-                        <Sessao key={categoria}>
+                        <Sessao key={categoria.nome}>
                             <div className="areaBtnCategoria">
-                                <button className="btnCategoria">{categoria}</button>
+                                <button className={`btnCategoria ${categoria.cor}`}>{categoria.nome}</button>
                             </div>
                             <div className="areaCard">
                                 {
                                     videos.map(video => {
-                                        if(categoria === video.categoria){
+                                        if(categoria.nome === video.categoria){
                                             return(
                                                 <Card 
                                                     key={video.id}
@@ -74,7 +74,6 @@ export const Home = () => {
                                                     pvideo={video.video}
                                                     pcategoria={categoria}
                                                     pdescricao={video.descricao}
-
                                                 />
                                             )
                                         }

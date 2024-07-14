@@ -9,7 +9,7 @@ const CardEstilizado = styled.div`
     height: auto;
     display: flex;
     flex-direction: column;
-    border: 2px solid var(--azul);
+    border: 2px solid #fff;
     border-radius: 10px;
     margin: 20px 30px 20px auto;
     img{
@@ -186,7 +186,7 @@ export const Card = ({pid, ptitulo, pimagem, pvideo, pcategoria, pdescricao}) =>
                     </div>
                 </form>
             </Modal>        
-            <CardEstilizado >
+            <CardEstilizado>
                 <img src={imagem} alt={`imagem do filme ${titulo}`} />
                 <div className="controle">
                     <button className="btn" onClick={()=>{deletar(pid)}}>DELETAR</button>

@@ -72,8 +72,6 @@ export const EstilosGlobais = createGlobalStyle`
         width: 180px;
         height: 54px;
     }
-
-
     /* Estilo para navegadores WebKit (Chrome, Safari, Opera) */
     ::-webkit-scrollbar {
     width: 12px; /* largura da barra de rolagem */
@@ -91,6 +89,17 @@ export const EstilosGlobais = createGlobalStyle`
     ::-webkit-scrollbar-thumb:hover {
     background-color: #33335c;
     }
+
+    .cor1{
+        background-color: #009178;
+    }
+    .cor2{
+        background-color: #a87d05;
+    }
+    .cor3{
+        background-color: #7971e7;
+    }
+
     @media(min-width: 1100px){
         main{
             width: 1200px;

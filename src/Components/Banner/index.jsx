@@ -43,7 +43,7 @@ const BannerEstilizado = styled.div`
         display: block;
     }
     @media(min-width: 1100px){
-        top: 125px;
+        top: 0px;
         align-items: center;
         .conteiner{
             margin-top: 20px;

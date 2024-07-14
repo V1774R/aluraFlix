@@ -4,8 +4,9 @@ export const VideosContexto = createContext();
 
 export const VideosProvider = ({children}) => {
     const [videos, setVideos] = useState([]);
-    //const categorias = ["Frontend", "Backend", "Inovação e Gestão"];
-    const [categorias, setCategorias] = useState([]);
+    //const categorias = ["Comédia", "Terror", "Ação"];
+    const categorias = [{nome: "Comédia", cor: "cor1"}, {nome: "Terror", cor: "cor2"}, {nome: "Ação", cor: "cor3"}]
+    //const [categorias, setCategorias] = useState(["Frontend", "Backend", "Inovação e Gestão"]);
 
     useEffect(()=>{
         const listarVideos = async () => {
