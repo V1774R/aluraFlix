@@ -11,7 +11,7 @@ export const VideosProvider = ({children}) => {
     useEffect(()=>{
         const listarVideos = async () => {
             try{
-                const resposta = await axios.get('http://localhost:5000/videos');
+                const resposta = await axios.get('https://api-6fzr.onrender.com/videos');
                 if(resposta){
                     setVideos(resposta.data)
                     const todosOsVideos = resposta.data;
