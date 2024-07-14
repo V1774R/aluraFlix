@@ -131,7 +131,7 @@ export const Card = ({pid, ptitulo, pimagem, pvideo, pcategoria, pdescricao}) =>
             }
             const atualizar = async (id) => {
                 try{
-                    const resposta = await axios.put(`https://api-6fzr.onrender.com/videos/${id}`, novoVideo);
+                    const resposta = await axios.put(`https://api-boe.onrender.com/videos/${id}`, novoVideo);
                     if(resposta){
                         setClasseModal('hide');
                         navigate('/');
@@ -146,7 +146,7 @@ export const Card = ({pid, ptitulo, pimagem, pvideo, pcategoria, pdescricao}) =>
     }    
     const deletar = async(id) =>{
         try{
-            const resposta = await axios.delete(`https://api-6fzr.onrender.com/videos/${id}`);
+            const resposta = await axios.delete(`https://api-boe.onrender.com/videos/${id}`);
             if(resposta){
                 navigate('/sucesso');
             }

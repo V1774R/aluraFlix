@@ -8,7 +8,7 @@ export const VideosProvider = ({children}) => {
 
     const listarVideos = async () => {
         try{
-            const resposta = await axios.get('https://api-6fzr.onrender.com/videos');
+            const resposta = await axios.get('https://api-boe.onrender.com/videos');
             if(resposta){
                 setVideos(resposta.data)
                 console.log('renderizando videos')

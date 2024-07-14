@@ -81,7 +81,7 @@ export const NovoVideo = () => {
             }
             const cadastrar = async () => {
                 try{
-                    const resposta = await axios.post('https://api-6fzr.onrender.com/videos', novoVideo);
+                    const resposta = await axios.post('https://api-boe.onrender.com/videos', novoVideo);
                     if(resposta){
                         navigate('/sucesso');
                     }
