@@ -1,5 +1,5 @@
 
-#Projeto Alura Flix#
+# Projeto Alura Flix #
 Este projeto, denominado Alura Flix, é uma aplicação web desenvolvida em React utilizando Vite como bundler. Ele simula um sistema de gerenciamento de vídeos, onde é possível realizar operações básicas como inserir, deletar, atualizar e listar vídeos.
 
 ![image](https://github.com/user-attachments/assets/c4075181-461f-4b0a-81f2-5dd925d089ed)
